@@ -2,16 +2,16 @@
 
 A fun, interactive web app that helps you beat procrastination by turning your next task into a game. Spin the roulette, get a random task, and start taking action!
 
-\<p align="center">
-&#x20; \<a href="[https://pro-roulette.netlify.app/](https://pro-roulette.netlify.app/)">\<strong>🚀 Live Demo\</strong>\</a>
-&#x20; ·
-&#x20; \<a href="[https://github.com/dvrone/procrastination-roulette](https://github.com/dvrone/procrastination-roulette)">\<strong>💻 Source Code\</strong>\</a>
-\</p>
+<p align="center">
+  <a href="https://pro-roulette.netlify.app/"><strong>🚀 Live Demo</strong></a>
+  ·
+  <a href="https://github.com/dvrone/procrastination-roulette"><strong>💻 Source Code</strong></a>
+</p>
 
 ## ✨ Features
 
 - 🎰 **Random Task Selection** — Spin the roulette to discover your next task.
-- 🎯 **Task Categories** — Organize activities by category.
+- 🎯 **Task Categories** — Organize activities by category and difficulty.
 - ➕ **Custom Tasks** — Add your own tasks to the roulette.
 - ✅ **Task Completion** — Mark tasks as completed and track your progress.
 - 📜 **Task History** — Review previously selected tasks.
@@ -25,13 +25,11 @@ A fun, interactive web app that helps you beat procrastination by turning your n
 - **JavaScript** — Roulette logic and interactive functionality
 - **Netlify** — Deployment and hosting
 
-## 📸 Screenshots
+## 📸 Screenshot
 
-Explore the application's interface:
-
-\<!-- Add your screenshots to the demo/ directory and update the paths below. -->
-
-![Main Interface](demo/image.png)
+<p align="center">
+  <img src="demo/image.png" alt="Procrastination Roulette application interface" width="800">
+</p>
 
 ## 🚀 Getting Started
 
@@ -58,6 +56,7 @@ No build process or package installation is required.
 ```text
 procrastination-roulette/
 ├── demo/
+│   └── image.png
 ├── index.html
 ├── LICENSE
 ├── README.md
@@ -71,16 +70,16 @@ procrastination-roulette/
 ## 🎮 How It Works
 
 1. Open Procrastination Roulette.
-2. Spin the roulette.
-3. Get a randomly selected task.
-4. Complete your mission.
-5. Spin again and keep making progress!
+2. Choose a task category and difficulty.
+3. Spin the roulette.
+4. Get a randomly selected task.
+5. Complete your mission and keep making progress!
 
 The idea is simple: spend less time deciding what to do and more time actually doing it.
 
 ## 🎯 Project Goal
 
-Procrastination Roulette was created as a small personal coding project exploring interactive web development, JavaScript logic, and playful approaches to productivity.
+Procrastination Roulette was created as a personal coding project exploring interactive web development, JavaScript logic, and playful approaches to productivity.
 
 It combines a simple game mechanic with a practical goal: making it easier to take the first step when you're putting things off.
 
@@ -97,6 +96,7 @@ This project is licensed under the terms of the [LICENSE](LICENSE) file.
 
 ---
 
-\<p align="center">
-&#x20; Made with ☕ and JavaScript by \<a href="[https://github.com/dvrone](https://github.com/dvrone)">dvrone\</a>
-\</p>
+<p align="center">
+  Made with ☕ and JavaScript by
+  <a href="https://github.com/dvrone">dvrone</a>
+</p>
