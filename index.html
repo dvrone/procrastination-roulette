@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Procrastination Roulette: spin the wheel, get a random task, and finally get things done.">
+    <meta name="theme-color" content="#0b0a14">
+    <title>Procrastination Roulette</title>
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎲%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="static/js/main.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <span class="brand-icon" aria-hidden="true">🎲</span>
+                <div>
+                    <h1>Procrastination <span class="accent">Roulette</span></h1>
+                    <p class="tagline">Can't decide what to do? Let fate pick your next task.</p>
+                </div>
+            </div>
+
+            <dl class="stats" aria-label="Session statistics">
+                <div class="stat">
+                    <dt>Spins</dt>
+                    <dd id="stat-spins">0</dd>
+                </div>
+                <div class="stat">
+                    <dt>Completed</dt>
+                    <dd id="stat-completed">0</dd>
+                </div>
+                <div class="stat">
+                    <dt>Success rate</dt>
+                    <dd id="stat-rate">0%</dd>
+                </div>
+            </dl>
+        </div>
+    </header>
+
+    <main id="main" class="container layout">
+        <div class="column">
+            <!-- Roulette -->
+            <section class="panel roulette" aria-labelledby="roulette-heading">
+                <h2 id="roulette-heading" class="panel-title">Spin the roulette</h2>
+
+                <div class="filters" role="group" aria-label="Filter tasks by category">
+                    <button type="button" class="chip" data-filter="all" aria-pressed="true">✨ All</button>
+                    <button type="button" class="chip" data-filter="productivity" aria-pressed="false">🚀
+                        Productivity</button>
+                    <button type="button" class="chip" data-filter="health" aria-pressed="false">💪 Health</button>
+                    <button type="button" class="chip" data-filter="learning" aria-pressed="false">📚 Learning</button>
+                    <button type="button" class="chip" data-filter="cleaning" aria-pressed="false">🧹 Cleaning</button>
+                    <button type="button" class="chip" data-filter="fun" aria-pressed="false">🎉 Fun</button>
+                </div>
+
+                <div class="spin-wrap">
+                    <span class="spin-ring" aria-hidden="true"></span>
+                    <button type="button" id="spin-btn" class="spin-btn"
+                        aria-label="Spin the roulette to get a random task">
+                        <span class="spin-emoji" aria-hidden="true">🎲</span>
+                        <span class="spin-label">SPIN</span>
+                    </button>
+                </div>
+
+                <p class="hint">Click the button or press <kbd>S</kbd> to spin.</p>
+            </section>
+
+            <!-- Result -->
+            <section class="panel result" id="result-card" aria-labelledby="result-heading">
+                <h2 id="result-heading" class="panel-title">Your task</h2>
+
+                <div id="result-empty" class="empty">
+                    <span class="empty-emoji" aria-hidden="true">🕹️</span>
+                    <p>No task yet. Hit <strong>SPIN</strong> and let the roulette decide.</p>
+                </div>
+
+                <div id="result-body" class="result-body" hidden>
+                    <div class="result-emoji" id="result-emoji" aria-hidden="true">🎯</div>
+                    <span class="badge" id="result-category">Productivity</span>
+                    <p class="result-task" id="result-task"></p>
+                    <p class="result-message" id="result-message"></p>
+
+                    <div class="actions">
+                        <button type="button" id="complete-btn" class="btn btn-primary"
+                            aria-label="Mark the selected task as completed">
+                            ✅ Mark as completed
+                        </button>
+                        <button type="button" id="again-btn" class="btn btn-secondary"
+                            aria-label="Spin again for a different task">
+                            🔄 Spin again
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="column">
+            <!-- Add custom task -->
+            <section class="panel" aria-labelledby="add-heading">
+                <h2 id="add-heading" class="panel-title">Add your own task</h2>
+
+                <form id="task-form" class="task-form" novalidate>
+                    <div class="field">
+                        <label for="task-input">Task description</label>
+                        <input type="text" id="task-input" name="task" maxlength="80" autocomplete="off"
+                            placeholder="e.g. Reply to that email" aria-describedby="form-error">
+                    </div>
+
+                    <div class="field">
+                        <label for="task-category">Category</label>
+                        <select id="task-category" name="category">
+                            <option value="productivity">🚀 Productivity</option>
+                            <option value="health">💪 Health</option>
+                            <option value="learning">📚 Learning</option>
+                            <option value="cleaning">🧹 Cleaning</option>
+                            <option value="fun">🎉 Fun</option>
+                        </select>
+                    </div>
+
+                    <p id="form-error" class="form-error" role="alert"></p>
+
+                    <button type="submit" class="btn btn-primary" aria-label="Add custom task to the roulette">
+                        ➕ Add task
+                    </button>
+                </form>
+
+                <h3 class="subtitle">
+                    Your custom tasks <span class="count" id="custom-count">0</span>
+                </h3>
+                <p id="custom-empty" class="muted">No custom tasks yet.</p>
+                <ul id="custom-list" class="list custom-list" aria-label="Custom tasks"></ul>
+            </section>
+
+            <!-- History -->
+            <section class="panel" aria-labelledby="history-heading">
+                <div class="panel-head">
+                    <h2 id="history-heading" class="panel-title">Session history</h2>
+                    <button type="button" id="clear-history" class="btn btn-ghost" aria-label="Clear session history">
+                        🗑️ Clear
+                    </button>
+                </div>
+
+                <p id="history-empty" class="muted">Your spins will show up here.</p>
+                <ol id="history-list" class="list history-list" aria-label="Spin history, newest first"></ol>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>Built with HTML, CSS &amp; vanilla JavaScript. Your data never leaves this browser.</p>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="sr-status" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+
+</html>
